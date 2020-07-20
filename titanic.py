@@ -26,8 +26,8 @@ import statsmodels.api as sm
 os.chdir('C:\\Users\\Simon\\Desktop\\Data Science\\Kaggle\\Titanic')
 
 #%% IMPORT CSV
-test_df = pd.read_csv('test.csv')
-train_df = pd.read_csv('train.csv')
+test_df = pd.read_csv('data/test.csv')
+train_df = pd.read_csv('data/train.csv')
 
 #%% SUMMARY STATS
 
