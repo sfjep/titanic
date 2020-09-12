@@ -430,89 +430,26 @@ comb3 = rf_test_pred + svc_test_pred + xgb_test_pred
 out3 = np.where(comb3 < 2, 0, 1)
 
 
+#%% SUBMISSION
+
+def generateSubmissionDf(pid, pred, name):
+    submission = pd.DataFrame({
+            "PassengerId": pid,
+            "Survived": pred
+        })
+    
+    submission.to_csv(('submission/' + name + '.csv'), index = False)   
+
 #%% SUBMISSION COMB5
 
-submission = pd.DataFrame({
-        "PassengerId": pid,
-        "Survived": out5
-    })
+generateSubmissionDf(pid, out5, 'out_comb5')  # Score: 0.78468
+generateSubmissionDf(pid, out3, 'out_comb3')  # Score: 0.78708
+generateSubmissionDf(pid, gb_test_pred, 'out_gb')  # Score: 0.76794
+generateSubmissionDf(pid, xgb_test_pred, 'out_xgb')  # Score: 0.77272
+generateSubmissionDf(pid, svc_test_pred, 'out_svc')  # Score: 0.78229
+generateSubmissionDf(pid, rf_test_pred, 'out_rf')  # Score: 0.79665
+generateSubmissionDf(pid, lr_test_pred, 'out_lr')  # Score: 0.76076
 
-submission.to_csv('out_comb5.csv', index = False)
-
-# Score: 0.78468
-
-#%% SUBMISSION COMB3
-
-submission = pd.DataFrame({
-        "PassengerId": pid,
-        "Survived": out3
-    })
-
-submission.to_csv('out_comb3.csv', index = False)
-
-# Score: 0.78708
-
-#%% SUBMISSION gb
-
-submission = pd.DataFrame({
-        "PassengerId": pid,
-        "Survived": gb_test_pred
-    })
-
-
-
-submission.to_csv('out_gb.csv', index = False)
-
-# Score: 0.76794
-
-#%% SUBMISSION xgb
-
-submission = pd.DataFrame({
-        "PassengerId": pid,
-        "Survived": xgb_test_pred
-    })
-
-
-
-submission.to_csv('out_xgb.csv', index = False)
-
-# Score: 0.77272
-
-#%% SUBMISSION svc
-
-submission = pd.DataFrame({
-        "PassengerId": pid,
-        "Survived": svc_test_pred
-    })
-
-
-
-submission.to_csv('out_svc.csv', index = False)
-
-# Score: 0.78229
-
-#%% SUBMISSION rf
-
-submission = pd.DataFrame({
-        "PassengerId": pid,
-        "Survived": rf_test_pred
-    })
-
-submission.to_csv('out_rf.csv', index = False)
-
-# Score: 0.79665
-
-
-#%% SUBMISSION log reg
-
-submission = pd.DataFrame({
-        "PassengerId": pid,
-        "Survived": lr_test_pred
-    })
-
-submission.to_csv('out_lr.csv', index = False)
-
-# Score: 0.76076
 
 #%% RANDOM FOREST FEATURE IMPORTANCE
 
